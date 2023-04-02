@@ -52,7 +52,6 @@ while True:
             if not val_counter:
                 continue
 
-
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 255), 2)
             cv2.putText(frame, "Vehicle No: " + str(counter), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1,
                         (0, 0, 255), 2)
@@ -61,22 +60,17 @@ while True:
             detect.append(center)
             cv2.circle(frame, center, 4, (0, 0, 255), -1)
 
-
             for (x, y) in detect:
                 if y < (count_line_position + offset) and y > (count_line_position - offset):
                     counter += 1
-                    print("Vehicle No: " + str(counter))
-                    cv2.line(frame, (250, count_line_position), (2000, count_line_position), (0, 127, 255), 3)
+                cv2.line(frame, (250, count_line_position), (2000, count_line_position), (0, 127, 255), 3)
+                detect.remove((x, y))
+                print("Vehicle No: " + str(counter))
 
-                    detect.remove((x, y))
 
-        # #object tracking
-        # boxes_ids =  tracker.update(detect)
-        # for box_id in boxes_ids:
-        #   x,y,w,h,id = box_id
-        #   cv2.putText(frame, "Vehicle No: " + str(counter), (x, y-20), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5)
-        #   cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 255), 2)
-        # print(boxes_ids)
+
+
+
 
 
 
